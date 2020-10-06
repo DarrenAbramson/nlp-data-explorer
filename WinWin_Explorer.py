@@ -124,11 +124,11 @@ with open(WinograndeA) as f:
 
 # At this point the WinograndeQA has the following format:
 
-#{'qID': '3D5G8J4N5CI2K40F4RZLF9OG2CKVTH-2', 
-# 'sentence': "Kyle doesn't wear leg warmers to bed, 
-#              while Logan almost always does. _ is more likely to live in a colder climate.", 
-# 'option1': 'Kyle', 
-# 'option2': 'Logan', 
+#{'qID': '3D5G8J4N5CI2K40F4RZLF9OG2CKVTH-2',
+# 'sentence': "Kyle doesn't wear leg warmers to bed,
+#              while Logan almost always does. _ is more likely to live in a colder climate.",
+# 'option1': 'Kyle',
+# 'option2': 'Logan',
 # 'answer': '2'}
 
 # This is preprocessed to have a structure that mirrors the WinogradQA structure.
@@ -164,7 +164,7 @@ numGrande = len(WinograndeQA)
 # the number of Winograd is 40398
 
 # Now both data sources should have a format that is identical.
-# Winograd comes with pronouns, but Winogrande comes with "_". 
+# Winograd comes with pronouns, but Winogrande comes with "_".
 # So the quiz is structured only to present substitutions and pick
 # the one that is sensible.
 
@@ -176,11 +176,11 @@ numGrande = len(WinograndeQA)
 #      print(random.choice(WinograndeQA))
 
 # Example:
-# {'AmbSen': 
-#     'James went to buy a skateboard, which was on sale, or rollerblades. He picked the _ since money was tight.', 
-#  'CorSen': 
-#     'James went to buy a skateboard, which was on sale, or rollerblades. He picked the rollerblades since money was tight.', 
-#  'InCorSen': 
+# {'AmbSen':
+#     'James went to buy a skateboard, which was on sale, or rollerblades. He picked the _ since money was tight.',
+#  'CorSen':
+#     'James went to buy a skateboard, which was on sale, or rollerblades. He picked the rollerblades since money was tight.',
+#  'InCorSen':
 #     'James went to buy a skateboard, which was on sale, or rollerblades. He picked the skateboard since money was tight.'}
 ####
 # UI and scoring
@@ -210,10 +210,10 @@ if timeLimit == "y":
         print("Successfully set time limit to", seconds)
     except:
         print("Sorry, you must enter an integer value.")
-    
+
     #finally:
     #    print("No timelimit!")
-    
+
 time.sleep(2)
 os.system('clear')
 
@@ -230,6 +230,9 @@ try:
     if gradMix > numGrad:
         gradMix = 0
         print("sorry, too many! Winograd set to 0.")
+    elif gradMix < 0:
+        gradMix = 0
+        print("You must enter a positive number. Winograd set to 0.")
     else:
         print("Successfully set the number of Winograd questions to", str(gradMix))
 except:
@@ -248,6 +251,9 @@ try:
     if grandeMix > numGrande:
         grandeMix = 0
         print("sorry, too many! Winogrande set to 0.")
+    elif grandeMix < 0:
+        grandeMix = 0
+        print("You must enter a positive number. Winogrande set to 0.")
     else:
         print("Successfully set the number of Winogrande questions to", str(grandeMix))
 except:
@@ -261,7 +267,7 @@ os.system('clear')
 
 # Make grad first, then grande. Then permute.
 
-gradList = random.sample(WinogradQA, gradMix) 
+gradList = random.sample(WinogradQA, gradMix)
 grandeList = random.sample(WinograndeQA, grandeMix)
 
 for i in gradList:
@@ -322,7 +328,7 @@ def do_question(queryListIndex, doMore=True, timed=False):
     global winogradRight
     global winograndeRight
     global askedQuestions
-    
+
     # Questions are already in random order
 
     # Randomized order, so either
@@ -347,7 +353,7 @@ def do_question(queryListIndex, doMore=True, timed=False):
     inCorSen = questionDict["InCorSen"]
 
     corFirst = bool(random.getrandbits(1))
-    
+
     if corFirst:
         print(f"1. {corSen} \n")
         print(f"2. {inCorSen} \n")
@@ -358,11 +364,11 @@ def do_question(queryListIndex, doMore=True, timed=False):
     # Timing starts after info taken from user and q/a printed,
     # but before branching into timed/untimed interfaces.
     timeStart = time.perf_counter()
-    
+
     if timed:
-        
+
         prompt = "You have %d seconds to choose the correct sentence:\n" % secondsToWait
-        
+
         try:
             answer = input_with_timeout(prompt, secondsToWait)
         except TimeoutExpired:
@@ -371,12 +377,12 @@ def do_question(queryListIndex, doMore=True, timed=False):
             answer = "0"
         else:
             print('Got %r' % answer)
-            
-    
+
+
     else:
         prompt = "enter answer: "
         answer = input(prompt)
-    
+
     timeFinish = time.perf_counter()
     timeElapsed = timeFinish - timeStart
 
@@ -392,7 +398,7 @@ def do_question(queryListIndex, doMore=True, timed=False):
             winograndeRight+=1
         #time.sleep(2)
     os.system('clear')
-    
+
     # Record enough to reconstruct this question/answer event:
     # * time
     # * user answer
@@ -400,7 +406,7 @@ def do_question(queryListIndex, doMore=True, timed=False):
     # * question (just use existing data structure?)
     thisQuestion = {"questionDict":questionDict,"answer":answer,"correctNum":correctNum,"timeElapsed":timeElapsed}
     askedQuestions.append(thisQuestion)
-    
+
 
     # 0 based indexing means after the length(list) - 1 question
     # has been asked we are done. There shouldn't be a 'Go again'
@@ -409,7 +415,7 @@ def do_question(queryListIndex, doMore=True, timed=False):
     if queryListIndex == len(queryList) - 1:
         doMore = False
         printFinal()
-        return doMore 
+        return doMore
 
     print("")
     answer = input("Go again?  ")
@@ -426,7 +432,7 @@ def printFinal():
     global winogradRight
     global winograndeRight
     global askedQuestions
-    
+
     #print(f"winogradAsked:{winogradAsked}\n"\
     #                       f"winograndeAsked:{winograndeAsked} \n"\
     #                       f"winogradRight:{winogradRight} \n"\
@@ -434,7 +440,7 @@ def printFinal():
     totalQuestionsRight = winogradRight + winograndeRight
     totalQuestionsAsked = winogradAsked + winograndeAsked
 
-    
+
     percentCorrect = totalQuestionsRight/totalQuestionsAsked
     if winogradAsked == 0:
         percentGradCorrect = 1
@@ -443,7 +449,7 @@ def printFinal():
     if winograndeAsked == 0:
         percentGrandeCorrect = 1
     else:
-        percentGrandeCorrect = winograndeRight/winograndeAsked 
+        percentGrandeCorrect = winograndeRight/winograndeAsked
 
     goodbyeString1 = f"Thanks for playing!\nYour overall score was {percentCorrect}."
     goodbyeString2 = f"Your Winograd score was {percentGradCorrect}."
@@ -460,7 +466,7 @@ def printFinal():
 idx = 0
 doMore = True
 
-while doMore: 
+while doMore:
     if idx < len(queryList):
         if timedTest:
             # print(idx)
