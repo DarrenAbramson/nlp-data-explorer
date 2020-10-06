@@ -1,8 +1,10 @@
 # nlp-data-explorer
 Repository for simple, portable explorers of popular NLP datasets.
 
-This contains explorers for three datasets: 1 by itself, and an explorer to measure quality between
-a handcrafted, researcher sourced data set (small) and a crowdsourced data set with similar structure (large)..
+This contains explorers for three datasets: one by itself, CommonSense QA, and an explorer to measure quality between
+a handcrafted, researcher sourced data set (small): Winograd,  and a crowdsourced data set with similar 
+structure (large): Winogrande.
+.
 
 1. The "CommonSense QA" dataset, paper and data available at https://www.tau-nlp.org/commonsenseqa
 
