@@ -22,3 +22,11 @@ Usage Example:
 ```python
 python WinWin_Explorer.py
 ```
+
+3. Some people think that bigger is better when it comes to language models. We disagree! 
+
+In fact, surveyable data sets, meta-curated by people, can help with all the usual GIGOs of crawling the entire web for your biased AF language model. 
+
+If Bookscorpus and Wikipedia on `albert-xx-large-v2` using [PLLs](https://arxiv.org/abs/1910.14659) [can do this well on common sense; (early draft, please only cite in small caps)](http://darrenabramson.com/paper.pdf), then filtering noisy, [cascade-causing](https://dl.acm.org/doi/abs/10.1145/3411764.3445518) arm's-length, exploitative data sets such as CQA into the better and worse parts as we have done here is just the beginning for compact, high-quality language models. 
+
+`albert-xxlarge-v2_CQA.csv` is the result of concatenating question with answers and selecting the one that is the most likely PLL for the model as correct. The corresponding explorer lets you mix and randomly select from questions albert got right and wrong, so as to reliably get as sense both of the model's ability and the quality of the data set.
