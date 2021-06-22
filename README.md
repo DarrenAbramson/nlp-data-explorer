@@ -31,4 +31,4 @@ If Bookscorpus and Wikipedia on `albert-xx-large-v2` using [PLLs](https://arxiv.
 
 `albert-xxlarge-v2_CQA.csv` is the result of concatenating question with answers and selecting the one that is the most likely PLL for the model as correct. The corresponding explorer lets you mix and randomly select from questions albert got right and wrong, so as to reliably get as sense both of the model's ability and the quality of the data set. 
 
-`subsetScores` is similar, applied to Winograd and Winogrande (but pickled instead of beting written to csv). To do. This file allows you to use `A_Subset_Explorer.py` and `A_Subset_Complement_Explorer.py` to selectively look at questions from each that Albert got right, or questions from each that Albert got wrong.
+`subsetScores` is similar, applied to Winograd and Winogrande (but pickled instead of being written to csv). To do. This file allows you to use `A_Subset_Explorer.py` and `A_Subset_Complement_Explorer.py` to selectively look at questions from each that Albert got right, or questions from each that Albert got wrong.
