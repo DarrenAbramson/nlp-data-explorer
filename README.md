@@ -25,7 +25,7 @@ python WinWin_Explorer.py
 
 3. Some people think that bigger is better when it comes to language models. We disagree! 
 
-In fact, surveyable data sets, meta-curated by people, can help with all the usual GIGOs of crawling the entire web for your biased AF language model. 
+In fact, surveyable data sets, meta-curated by people, can help with all the usual GIGOs of crawling the entire web for making a biased human language model. NOTE: the idea that we could produce an "unbiased" language model has been known to be false since Quine's Two Dogmas, Kuhn's Scientific Revolutions, and even Bacon's Organum. 
 
 If Bookscorpus and Wikipedia on `albert-xx-large-v2` using [PLLs](https://arxiv.org/abs/1910.14659) [can do this well on common sense; (early draft, please only cite in small caps)](http://darrenabramson.com/paper.pdf), then filtering noisy, [cascade-causing](https://dl.acm.org/doi/abs/10.1145/3411764.3445518) arm's-length, exploitative data sets such as CQA into the better and worse parts as we have done here is just the beginning for compact, high-quality language models. 
 
