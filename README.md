@@ -1,5 +1,5 @@
 # nlp-data-explorer
-Repository for simple, portable explorers of popular NLP datasets.
+Repository for simple, portable explorers of popular NLP datasets. This repository is associated with this [academic paper](https://dl.acm.org/doi/fullHtml/10.1145/3462741.3466809).
 
 This contains explorers for three datasets: one by itself, CommonSense QA, and an explorer to measure quality between
 a handcrafted, researcher sourced data set (small): Winograd,  and a crowdsourced data set with similar 
