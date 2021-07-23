@@ -1,4 +1,4 @@
-import jsonlines
+import json
 import time
 import os
 import sys
@@ -39,9 +39,9 @@ totalQuestionsAsked = 0.
 totalQuestionsRight = 0.
 
 # Read file into data structure
-with jsonlines.open('train_rand_split.jsonl') as reader:
+with open('train_rand_split.jsonl', 'r') as reader:
     for obj in reader:
-        questionsWithAnswers.append(obj)
+        questionsWithAnswers.append(json.loads(obj))
 
 # Store total number of questions for random question selection
 numQuestions = len(questionsWithAnswers)

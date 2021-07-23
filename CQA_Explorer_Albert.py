@@ -1,4 +1,4 @@
-import jsonlines
+import json
 import time
 import os
 import sys
