@@ -4,7 +4,7 @@ import time
 import urllib.request
 import zipfile
 import re
-import jsonlines
+import json
 import random
 import sys
 import select
@@ -110,9 +110,10 @@ for schema in root:
 WinograndeQA_long = []
 
 # Read file into data structure
-with jsonlines.open(WinograndeQ) as reader:
+with open(WinograndeQ,'r') as reader:
     for obj in reader:
-        WinograndeQA_long.append(obj)
+        WinograndeQA_long.append(json.loads(obj))
+
 
 counter = 0
 with open(WinograndeA) as f:
